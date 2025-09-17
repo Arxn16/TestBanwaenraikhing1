@@ -18,7 +18,7 @@
       --card:#ffffff;         /* บัตร */
       --radius:18px;
       --shadow:0 10px 25px rgba(0,0,0,.07);
-      --content-width: 1100px; /* ✅ กำหนดความกว้างคอนเทนต์หลักให้ทั้งสไลด์และกริดใช้ร่วมกัน ....*/
+      --content-width: 1100px; /* ✅ กำหนดความกว้างคอนเทนต์หลักให้ทั้งสไลด์และกริดใช้ร่วมกัน */
     }
     *{box-sizing:border-box}
     html,body{margin:0; padding:0; font-family:"Prompt",system-ui,-apple-system,Segoe UI,Roboto; color:var(--text); background:var(--bg)}
