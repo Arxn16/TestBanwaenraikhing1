@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Kaikhong Homepage</title>
+  <title>Banvanraikhing Homepage</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -179,7 +179,7 @@
   <!-- Header / navigation -->
   <header>
     <div class="container nav" id="nav">
-      <a class="brand" href="#"><span class="logo"></span> Kaikhong</a>
+      <a class="brand" href="#"><span class="logo"></span>Banvanraikhing</a>
       <button class="hamburger iconbtn" aria-label="menu" onclick="toggleNav()">☰</button>
 
       <nav class="navlinks" id="links">
@@ -274,7 +274,7 @@
   <footer>
     <div class="container">
       <div>
-        <h4>Kaikhong</h4>
+        <h4>Banvanraikhing</h4>
         <p>แพลตฟอร์มช้อปปิ้งที่คัดสรรสินค้าเพื่อคุณอย่างใส่ใจ ส่งเร็ว ราคาเป็นมิตร</p>
       </div>
       <div>
