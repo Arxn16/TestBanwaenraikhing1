@@ -124,7 +124,7 @@
     /* Footer */
     footer{
       margin-top:36px; 
-      background:#004d40; 
+      background:#000033; 
       color:#e2e8f0}
     footer .container{
       display:grid; 
