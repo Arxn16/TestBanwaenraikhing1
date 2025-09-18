@@ -9,9 +9,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --brand:#000033;        /* หลัก */
-      --brand-600:#000033;    /* สีค้นหา */
-      --brand-700:#000033;    
+      --brand:#004d40;        /* หลัก */
+      --brand-600:#004d40;    /* สีค้นหา */
+      --brand-700:#004d40;    
       --text:#1e293b;         /* เทาเข้ม */
       --muted:#64748b;        /* เทากลาง */
       --bg:#f6f7f9;           /* พื้นหลัง */
@@ -124,7 +124,7 @@
     /* Footer */
     footer{
       margin-top:36px; 
-      background:#000033; 
+      background:#004d40; 
       color:#e2e8f0}
     footer .container{
       display:grid; 
@@ -164,6 +164,27 @@
       .col-3{grid-column:span 6}
       .col-6{grid-column:span 12}
       footer .container{grid-template-columns:1fr}
+    }
+  
+
+    /* ===== Header tidy overrides (desktop) ===== */
+    @media (min-width:1001px){
+      header .container{ padding-left:8px; }
+      .nav{
+        display:grid;                           /* brand | links | search */
+        grid-template-columns:auto 1fr auto;
+        align-items:center;
+        column-gap:16px;
+      }
+      .brand{ gap:8px; }
+      .navlinks{
+        display:flex; gap:14px; flex-wrap:nowrap; min-width:0;
+      }
+      .navlinks a{ white-space:nowrap; }
+      .searchbar{
+        justify-self:end; margin-left:0; width:min(560px,44vw); flex:none;
+      }
+      .searchbar form{ width:100%; max-width:none; }
     }
   </style>
 </head>
@@ -212,42 +233,52 @@
         <article class="slide">
           <div class="left">
             <div class="inner">
-              <span style="opacity:.85">Exclusive</span>
-              <h1>Home Decor</h1>
-              <p>เนรมิตบ้านให้อบอุ่น ด้วยของตกแต่งบ้านจาก Cozy Maison</p>
+              <span style="opacity:.85">ตัดแว่นงบประหยัด</span>
+              <h1>NEW ARRIVALS</h1>
+              <p>กรอบแว่นตาแฟชั่นสวยงาม แข็งแรง พร้อมเลนส์ <br> เริ่มต้น 990, 1290, 1690 บาท จ่ายราคานี้จ่ายจริง ราคานี้ได้อะไรบ้าง ?<br>
+                  -ทำค่าสายตาได้ { สั้น-6.00|ยาว+6.00} {เอียง-4.00}<br>
+                  -เลนส์กรองแสง Multicoat 1.56<br>
+                  -เลนส์ตัดแสงสีฟ้า Blue block 1.56 <br>
+                  -เลนส์ออกแดดเปลี่ยนสีอัติโนมัติ Photo 1.56<br>
+                  -เลนส์ตัดแสงสีฟ้าออกแดดเปลี่ยนสีอัตโนมัติ Photp Blue 1.56 <br>
+                  -ตรวจวัดสายตาฟรีด้วยระบบคอมพิวเตอร์<br>
+                  -บริการจัดส่งสินค้าฟรี📌<br>
+                  -มีอุปกรณ์แถมครบกล่อง</p>
               <button class="cta">ช้อปเลย</button>
             </div>
           </div>
           <div class="right">
-            <img src="https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1740&auto=format&fit=crop" alt="Dining room" />
+            <img src="https://scontent.fkkc3-1.fna.fbcdn.net/v/t39.30808-6/540713088_763082599802061_4300738556788519853_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeG0gEpl5rouIN-T_ZucfekcR1-abso_Ct1HX5puyj8K3U3o9IYDbjjd-bjG8nCEa5C8beHtfvfTSWz6tIWLXqUW&_nc_ohc=a_NQ7KO4EMUQ7kNvwG8MAVW&_nc_oc=AdkSv2MHIr_0fQc1tlekfOtHdpoDF7wH9_EWEjjnJfdLtFBmmer6VKGHb_b3FS4asi0&_nc_zt=23&_nc_ht=scontent.fkkc3-1.fna&_nc_gid=TxiMHEXJUDWhe-SuI-1Pqg&oh=00_Afb7UwERySiQppH5IGZDdJkDtvXEY9lv9YVPrYt3XN31Yw&oe=68D1D1BC" alt="Dining room" />
           </div>
         </article>
         <!-- Slide 2 -->
         <article class="slide">
           <div class="left" style="background:#3b3b6d">
             <div class="inner">
-              <span style="opacity:.85">New Arrival</span>
-              <h1>แฟชั่นรับหน้าฝน</h1>
-              <p>กันน้ำ เบาสบาย สไตล์มินิมอล คอลเลกชันใหม่ล่าสุด</p>
+              <span style="opacity:.85">BELON</span>
+              <h1> BELON B-TITANIUM IP รุ่น 5299 สี SILVER</h1>
+              <p>กล่องแว่นตาจากแบรนด์ BELON+ผ้าเช็ดเลนส์ <br>
+                 -ผ้าเช็ดเลนส์พรีเมี่ยมจาก HOYA <br>
+                 -น้ำยาทำความสะอาดเลนส์</p> 
               <button class="cta">ดูคอลเลกชัน</button>
             </div>
           </div>
           <div class="right">
-            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1740&auto=format&fit=crop" alt="Fashion" />
+            <img src="https://scontent.fkkc3-1.fna.fbcdn.net/v/t39.30808-6/538139996_756024113841243_6197612905239313754_n.jpg?stp=cp6_dst-jpegr_tt6&_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFmkfTCVB7WCLXbC0jSx-uBe7Uj6Od8TgF7tSPo53xOAQptQxVNv2YnHIq2WTOmd1iA40Jk8YAE_JxoNpU_3FLB&_nc_ohc=0jvlRmHXLeUQ7kNvwFP1vRF&_nc_oc=AdlXWzKPmYPPainglRifue9u0mLgn5nB_EpTXzLyEHLXyDnkahR71yuW_fJ9qNPSWnc&_nc_zt=23&se=-1&_nc_ht=scontent.fkkc3-1.fna&_nc_gid=GInwPE9DAMEAp1CD7NTH4w&oh=00_Afa-droMaRroXQugKokrNCU0WgWx1o2blIFdJIe6YaiNhA&oe=68D1B79A" alt="Fashion" />
           </div>
         </article>
         <!-- Slide 3 -->
         <article class="slide">
           <div class="left" style="background:#6b3b3b">
             <div class="inner">
-              <span style="opacity:.85">Member Deal</span>
-              <h1>ส่วนลดสูงสุด 40%</h1>
-              <p>สำหรับสมาชิกใหม่ ใช้ได้กับหมวด Home และ Beauty</p>
+              <span style="opacity:.85">Saturday tip</span>
+              <h1> Blue Control</h1>
+              <p>POLO FRANK 456, POLO SPORT 451 +1.6 HOYA STELLIFY SV BLUE CONTROL HV</p>
               <button class="cta">สมัครสมาชิก</button>
             </div>
           </div>
           <div class="right">
-            <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1740&auto=format&fit=crop" alt="Home plant" />
+            <img src="https://scontent.fkkc3-1.fna.fbcdn.net/v/t39.30808-6/509359928_706810725429249_6320299717422731806_n.jpg?stp=cp6_dst-jpegr_tt6&_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEPcXGtA2L7eeMpnXCa3xQCYJ3opBWK2h5gneikFYraHv8Szta7ALUFOAJ5uvwGEA20BJb6y_7r1sgM_2cPanA9&_nc_ohc=VfDLoQUHgjUQ7kNvwGUzFfx&_nc_oc=AdkgopjHp7QOJD5sdErULjNa_MReguzO1Ni6vMKJ3uVzYgAuG9oSRJwBEC19Gi2F8tY&_nc_zt=23&se=-1&_nc_ht=scontent.fkkc3-1.fna&_nc_gid=IjvHnHuNu1P7PHlXjom6LQ&oh=00_Afb534PsM8hmuY1KcmcUwgrtc1eNsOgF5uqYaS9StUQsTQ&oe=68D1CA04" alt="Home plant" />
           </div>
         </article>
       </div>
