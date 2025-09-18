@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Banvanraikhing Homepage</title>
+  <title>Banwaenraikhing Homepage</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -243,7 +243,7 @@
   <!-- Header / navigation -->
   <header>
     <div class="container nav" id="nav">
-      <a class="brand" href="#"><span class="logo"></span>Banvanraikhing</a>
+      <a class="brand" href="#"><span class="logo"></span>Banwaenraikhing</a>
       <button class="hamburger iconbtn" aria-label="menu" onclick="toggleNav()">☰</button>
 
       <nav class="navlinks" id="links">
@@ -355,7 +355,7 @@
 <footer>
   <div class="container">
     <div>
-      <h4>Banvanraikhing Optical</h4>
+      <h4>Banwaenraikhing Optical</h4>
       <p>ศูนย์รวมแว่นตาแฟชั่นและสายตา เลนส์คุณภาพสูง  
          บริการวัดสายตาโดยผู้เชี่ยวชาญ พร้อมโปรโมชั่นพิเศษตลอดปี</p>
     </div>
@@ -380,7 +380,7 @@
       <a href="#">TikTok</a>
     </div>
   </div>
-  <div class="copyright">© 2025 Banvanraikhing Optical. All rights reserved.</div>
+  <div class="copyright">© 2025 Banwaenraikhing Optical. All rights reserved.</div>
 </footer>
 
 <script>
