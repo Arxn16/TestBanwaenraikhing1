@@ -164,7 +164,7 @@
 
        /* ===== Modal สำหรับแสดงรูป ===== */
 .img-modal {
-  display: none;              /* ซ่อนตอนเริ่มต้น */
+  display: none; /* เริ่มต้นต้อง none */
   position: fixed; 
   z-index: 9999; 
   left: 0; top: 0; width: 100%; height: 100%;
@@ -172,6 +172,7 @@
   align-items:center; 
   justify-content:center;
 }
+
 .img-modal img {
   max-width: 90%; 
   max-height: 90%; 
@@ -459,12 +460,25 @@
 function openModal(src){
   const modal = document.getElementById("imgModal");
   const modalImg = document.getElementById("modalImg");
-  modal.style.display = "flex";   // เปิด modal
+  modal.style.display = "flex";   // ✅ กำหนด flex ตอนเปิด
   modalImg.src = src;
 }
+
 function closeModal(){
   document.getElementById("imgModal").style.display = "none"; // ปิด modal
 }
+
+let index = 0; 
+const slides = document.getElementById('slides');
+const total = slides.children.length;
+
+function update(){
+  slides.style.transform = `translateX(-${index*100}%)`;
+  setDots();
+}
+function nextSlide(){ index = (index+1) % total; update(); }
+function prevSlide(){ index = (index-1+total) % total; update(); }
+
 
 </script>
 
