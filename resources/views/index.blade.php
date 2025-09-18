@@ -121,6 +121,23 @@
     .btn-sm{ border:0; background:var(--brand-600); color:#fff; padding:10px 12px; border-radius:10px; font-weight:700; cursor:pointer }
     .btn-sm:hover{ filter:brightness(.95) }
 
+    .product .thumb {
+        position: relative;
+        background: #fff;
+        display: grid;
+        place-items: center;
+        height: 200px;   /* ความสูงกรอบรูปคงที่ */
+        overflow: hidden;
+      }
+
+      .product .thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;  /* ทำให้รูปไม่ถูกครอบ/บิด */
+        cursor: pointer;      /* มี pointer เวลา hover */
+      }
+
+
     /* Footer */
     footer{
       margin-top:36px; 
@@ -143,6 +160,29 @@
       padding:12px 0; 
       font-size:.9rem; 
       text-align:center}
+
+
+       /*  Modal สำหรับแสดงรูป */
+      .img-modal {
+          display: none; 
+          position: fixed; 
+          z-index: 9999; 
+          left: 0; top: 0; width: 100%; height: 100%;
+          background: rgba(0,0,0,.8); 
+          display:flex; align-items:center; justify-content:center;
+        }
+        .img-modal img {
+          max-width: 90%; 
+          max-height: 90%; 
+          border-radius: 12px;
+          box-shadow: 0 10px 30px rgba(0,0,0,.6);
+        }
+    .img-modal .close {
+      position: absolute;
+      top: 20px; right: 30px;
+      font-size: 36px; font-weight: bold; color: #fff;
+      cursor: pointer;
+    } 
 
     /* Responsive */
     .hamburger{display:none}
@@ -290,151 +330,137 @@
     </div>
   </section>
 
-  <!-- Categories -->
-  <section class="section">
-    <div class="head">
-      <h2 style="margin:0">สินค้าแนะนำ</h2>
-      <div class="filters" id="catFilters"></div>
-      <select class="select-sm" id="catSelect"></select>
+ <!-- Categories -->
+<section class="section">
+  <div class="head">
+    <h2 style="margin:0">แว่นตาแนะนำ</h2>
+    <div class="filters" id="catFilters"></div>
+    <select class="select-sm" id="catSelect"></select>
+  </div>
+
+  <div class="grid" id="productGrid"></div>
+
+  <!-- Modal สำหรับแสดงรูป -->
+<div id="imgModal" class="img-modal" onclick="closeModal()">
+  <span class="close">×</span>
+  <img class="modal-content" id="modalImg">
+</div>
+  
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div>
+      <h4>Banvanraikhing Optical</h4>
+      <p>ศูนย์รวมแว่นตาแฟชั่นและสายตา เลนส์คุณภาพสูง  
+         บริการวัดสายตาโดยผู้เชี่ยวชาญ พร้อมโปรโมชั่นพิเศษตลอดปี</p>
     </div>
-
-    <div class="grid" id="productGrid"></div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div>
-        <h4>Banvanraikhing</h4>
-        <p>แพลตฟอร์มช้อปปิ้งที่คัดสรรสินค้าเพื่อคุณอย่างใส่ใจ ส่งเร็ว ราคาเป็นมิตร</p>
-      </div>
-      <div>
-        <h4>หมวดหมู่</h4>
-        <a href="#">เสื้อผ้า</a>
-        <a href="#">รองเท้า</a>
-        <a href="#">กระเป๋า</a>
-        <a href="#">ของตกแต่งบ้าน</a>
-      </div>
-      <div>
-        <h4>ช่วยเหลือ</h4>
-        <a href="#">วิธีสั่งซื้อ</a>
-        <a href="#">การชำระเงิน</a>
-        <a href="#">ติดตามพัสดุ</a>
-        <a href="#">คืนสินค้า</a>
-      </div>
-      <div>
-        <h4>ติดต่อเรา</h4>
-        <a href="#">Facebook</a>
-        <a href="#">Line</a>
-        <a href="#">TikTok</a>
-      </div>
+    <div>
+      <h4>หมวดหมู่</h4>
+      <a href="#">แว่นสายตา</a>
+      <a href="#">แว่นกันแดด</a>
+      <a href="#">เลนส์เสริม</a>
+      <a href="#">อุปกรณ์ดูแลเลนส์</a>
     </div>
-    <div class="copyright">© 2025 GoMart. All rights reserved.</div>
-  </footer>
+    <div>
+      <h4>บริการ</h4>
+      <a href="#">ตรวจวัดสายตา</a>
+      <a href="#">ปรับแต่งกรอบ</a>
+      <a href="#">การรับประกันสินค้า</a>
+      <a href="#">วิธีสั่งซื้อ</a>
+    </div>
+    <div>
+      <h4>ติดต่อเรา</h4>
+      <a href="#">Facebook</a>
+      <a href="#">Line</a>
+      <a href="#">TikTok</a>
+    </div>
+  </div>
+  <div class="copyright">© 2025 Banvanraikhing Optical. All rights reserved.</div>
+</footer>
 
-  <script>
-    // Mobile nav toggle
-    function toggleNav(){
-      document.getElementById('nav').classList.toggle('open');
-    }
+<script>
+  /* ===== Products data (เกี่ยวกับร้านแว่นตา) ===== */
+  const PRODUCTS = [
+    {id:1, name:'กรอบแว่น Acetate รุ่น Classic Black', cat:'แว่นสายตา', img:'https://images.unsplash.com/photo-1583394838336-acd977736f90?q=80&w=1200&auto=format&fit=crop', priceOld:2990, priceNew:1990, off:33, rating:5},
+    {id:2, name:'แว่นกันแดด Polarized รุ่น Urban', cat:'แว่นกันแดด', img:'https://images.unsplash.com/photo-1582550945154-66ea8fff25e1?q=80&w=1200&auto=format&fit=crop', priceOld:2590, priceNew:1890, off:27, rating:4},
+    {id:3, name:'เลนส์ HOYA BlueControl 1.56', cat:'เลนส์เสริม', img:'https://images.unsplash.com/photo-1606813907291-f85f1f4c68a5?q=80&w=1200&auto=format&fit=crop', priceOld:3500, priceNew:2800, off:20, rating:5},
+    {id:4, name:'กรอบโลหะ B-Titanium รุ่น Minimal', cat:'แว่นสายตา', img:'https://images.unsplash.com/photo-1601933470619-d38099b8a5f4?q=80&w=1200&auto=format&fit=crop', priceOld:4590, priceNew:3590, off:22, rating:4},
+    {id:5, name:'น้ำยาทำความสะอาดเลนส์ + ผ้าไมโครไฟเบอร์', cat:'อุปกรณ์ดูแลเลนส์', img:'https://images.unsplash.com/photo-1606813907291-f85f1f4c68a5?q=80&w=1200&auto=format&fit=crop', priceOld:390, priceNew:290, off:25, rating:5},
+    {id:6, name:'แว่นกันแดดแฟชั่น รุ่น Retro Chic', cat:'แว่นกันแดด', img:'https://images.unsplash.com/photo-1600166898380-99b5590d53c2?q=80&w=1200&auto=format&fit=crop', priceOld:1990, priceNew:1490, off:25, rating:4},
+    {id:7, name:'เลนส์เปลี่ยนสีอัตโนมัติ Photochromic', cat:'เลนส์เสริม', img:'https://images.unsplash.com/photo-1591076482161-b34c772316f5?q=80&w=1200&auto=format&fit=crop', priceOld:4800, priceNew:3990, off:17, rating:5},
+    {id:8, name:'กรอบ TR90 น้ำหนักเบา รุ่น Daily Use', cat:'แว่นสายตา', img:'https://images.unsplash.com/photo-1621973882576-15d3daac0e4b?q=80&w=1200&auto=format&fit=crop', priceOld:1890, priceNew:1290, off:31, rating:4},
+  ];
 
-    // Simple slider
-    const slides = document.getElementById('slides');
-    const slider = document.getElementById('slider');
-    const dotsWrap = document.getElementById('dots');
-    let index = 0; let total = slides.children.length; let timer;
+  const grid = document.getElementById('productGrid');
+  const filters = document.getElementById('catFilters');
+  const select = document.getElementById('catSelect');
 
-    function setDots(){
-      dotsWrap.innerHTML = '';
-      for(let i=0;i<total;i++){
-        const d = document.createElement('span');
-        d.className = 'dot' + (i===index?' active':'');
-        d.onclick = ()=>{ index=i; update(); resetAuto(); };
-        dotsWrap.appendChild(d);
-      }
-    }
-    function update(){
-      slides.style.transform = `translateX(-${index*100}%)`;
-      setDots();
-    }
-    function nextSlide(){ index = (index+1)%total; update(); }
-    function prevSlide(){ index = (index-1+total)%total; update(); }
-    function auto(){ timer = setInterval(nextSlide, 5000); }
-    function resetAuto(){ clearInterval(timer); auto(); }
+  const cats = ['ทั้งหมด', ...Array.from(new Set(PRODUCTS.map(p => p.cat)))];
 
-    // Init slider
-    setDots(); auto();
-    slider.addEventListener('mouseenter', ()=>clearInterval(timer));
-    slider.addEventListener('mouseleave', resetAuto);
+  function renderFilters(active = 'ทั้งหมด'){
+    filters.innerHTML = '';
+    cats.forEach(c => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'pill' + (c===active?' active':'');
+      b.textContent = c;
+      b.onclick = () => { renderProducts(c); renderFilters(c); select.value = c; };
+      filters.appendChild(b);
+    });
 
-    /* ===== Products data (ตัวอย่าง) ===== */
-    const PRODUCTS = [
-      {id:1, name:'Penne Rigate', cat:'Breakfast', img:'https://www.facebook.com/photo.php?fbid=776717525105235&set=pb.100083009838483.-2207520000&type=3', priceOld:59, priceNew:49, off:17, rating:4},
-      {id:2, name:'Beef Steak', cat:'Cooking', img:'https://images.unsplash.com/photo-1603048297172-c92544798c53?q=80&w=1200&auto=format&fit=crop', priceOld:59, priceNew:49, off:17, rating:5},
-      {id:3, name:'Coconut', cat:'Fruits', img:'https://images.unsplash.com/photo-1501290836517-b22a21c3dd2c?q=80&w=1200&auto=format&fit=crop', priceOld:59, priceNew:49, off:17, rating:4},
-      {id:4, name:'Pasta Pack', cat:'Breakfast', img:'  ', priceOld:59, priceNew:49, off:17, rating:4},
-      {id:5, name:'Pineapple', cat:'Fruits', img:'   ', priceOld:59, priceNew:49, off:17, rating:5},
-      {id:6, name:'Bananas', cat:'Fruits', img:'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?q=80&w=1200&auto=format&fit=crop', priceOld:59, priceNew:49, off:17, rating:4},
-      {id:7, name:'White Wine', cat:'Beverage', img:'https://images.unsplash.com/photo-1544126595-9de0bd7bb9b7?q=80&w=1200&auto=format&fit=crop', priceOld:59, priceNew:49, off:17, rating:3},
-      {id:8, name:'Olive Oil', cat:'Cooking', img:'   ', priceOld:59, priceNew:49, off:17, rating:5},
-    ];
+    // mobile dropdown
+    select.innerHTML = cats.map(c => `<option value="${c}">${c}</option>`).join('');
+    select.value = active;
+    select.onchange = e => { renderProducts(e.target.value); renderFilters(e.target.value); };
+  }
 
-    const grid = document.getElementById('productGrid');
-    const filters = document.getElementById('catFilters');
-    const select = document.getElementById('catSelect');
+  function productCard(p){
+  return `
+    <article class="product card">
+      <div class="thumb">
+        <img src="${p.img}" alt="${p.name}" onclick="openModal('${p.img}')">
+        ${p.off ? `<span class="badge">-${p.off}%</span>`:''}
+        <button class="wish" title="เพิ่มรายการโปรด">♡</button>
+      </div>
+      <div class="body">
+        <div class="catname">${p.cat}</div>
+        <div class="pname">${p.name}</div>
+        <div class="rating" aria-label="rating ${p.rating} stars">
+          ${'★'.repeat(p.rating)}${'☆'.repeat(5-p.rating)}
+        </div>
+        <div class="price">
+          <span class="old">฿${p.priceOld.toLocaleString()}</span>
+          <span class="new">฿${p.priceNew.toLocaleString()}</span>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="btn-sm">เพิ่มลงตะกร้า</button>
+        <button class="btn-sm" style="background:#0ea5e9">ดูสินค้า</button>
+      </div>
+    </article>
+  `;
+}
 
-    const cats = ['ทั้งหมด', ...Array.from(new Set(PRODUCTS.map(p => p.cat)))];
 
-    function renderFilters(active = 'ทั้งหมด'){
-      filters.innerHTML = '';
-      cats.forEach(c => {
-        const b = document.createElement('button');
-        b.type = 'button';
-        b.className = 'pill' + (c===active?' active':'');
-        b.textContent = c;
-        b.onclick = () => { renderProducts(c); renderFilters(c); select.value = c; };
-        filters.appendChild(b);
-      });
+  function renderProducts(cat='ทั้งหมด'){
+    const list = cat==='ทั้งหมด' ? PRODUCTS : PRODUCTS.filter(p => p.cat===cat);
+    grid.innerHTML = list.map(productCard).join('');
+  }
 
-      // mobile dropdown
-      select.innerHTML = cats.map(c => `<option value="${c}">${c}</option>`).join('');
-      select.value = active;
-      select.onchange = e => { renderProducts(e.target.value); renderFilters(e.target.value); };
-    }
+  // init products
+  renderFilters();
+  renderProducts();
 
-    function productCard(p){
-      return `
-        <article class="product card">
-          <div class="thumb">
-            <img src="${p.img}" alt="${p.name}">
-            ${p.off ? `<span class="badge">-${p.off}%</span>`:''}
-            <button class="wish" title="เพิ่มรายการโปรด">♡</button>
-          </div>
-          <div class="body">
-            <div class="catname">${p.cat}</div>
-            <div class="pname">${p.name}</div>
-            <div class="rating" aria-label="rating ${p.rating} stars">${'★'.repeat(p.rating)}${'☆'.repeat(5-p.rating)}</div>
-            <div class="price">
-              <span class="old">$${p.priceOld.toFixed(2)}</span>
-              <span class="new">$${p.priceNew.toFixed(2)}</span>
-            </div>
-          </div>
-          <div class="actions">
-            <button class="btn-sm">เพิ่มลงตะกร้า</button>
-            <button class="btn-sm" style="background:#0ea5e9">ดูสินค้า</button>
-          </div>
-        </article>
-      `;
-    }
+  function openModal(src){
+  document.getElementById("imgModal").style.display="flex";
+  document.getElementById("modalImg").src = src;
+}
+function closeModal(){
+  document.getElementById("imgModal").style.display="none";
+}
+</script>
 
-    function renderProducts(cat='ทั้งหมด'){
-      const list = cat==='ทั้งหมด' ? PRODUCTS : PRODUCTS.filter(p => p.cat===cat);
-      grid.innerHTML = list.map(productCard).join('');
-    }
-
-    // init products
-    renderFilters();
-    renderProducts();
-  </script>
 </body>
 </html>
