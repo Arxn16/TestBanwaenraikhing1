@@ -162,27 +162,29 @@
       text-align:center}
 
 
-       /*  Modal สำหรับแสดงรูป */
-      .img-modal {
-          display: none; 
-          position: fixed; 
-          z-index: 9999; 
-          left: 0; top: 0; width: 100%; height: 100%;
-          background: rgba(0,0,0,.8); 
-          display:flex; align-items:center; justify-content:center;
-        }
-        .img-modal img {
-          max-width: 90%; 
-          max-height: 90%; 
-          border-radius: 12px;
-          box-shadow: 0 10px 30px rgba(0,0,0,.6);
-        }
-    .img-modal .close {
-      position: absolute;
-      top: 20px; right: 30px;
-      font-size: 36px; font-weight: bold; color: #fff;
-      cursor: pointer;
-    } 
+       /* ===== Modal สำหรับแสดงรูป ===== */
+.img-modal {
+  display: none;              /* ซ่อนตอนเริ่มต้น */
+  position: fixed; 
+  z-index: 9999; 
+  left: 0; top: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,.8); 
+  align-items:center; 
+  justify-content:center;
+}
+.img-modal img {
+  max-width: 90%; 
+  max-height: 90%; 
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.6);
+}
+.img-modal .close {
+  position: absolute;
+  top: 20px; right: 30px;
+  font-size: 36px; font-weight: bold; color: #fff;
+  cursor: pointer;
+}
+
 
     /* Responsive */
     .hamburger{display:none}
@@ -341,11 +343,11 @@
   <div class="grid" id="productGrid"></div>
 
   <!-- Modal สำหรับแสดงรูป -->
-<div id="imgModal" class="img-modal" onclick="closeModal()">
-  <span class="close">×</span>
+<div id="imgModal" class="img-modal">
+  <span class="close" onclick="closeModal()">×</span>
   <img class="modal-content" id="modalImg">
 </div>
-  
+
 </section>
 
 <!-- Footer -->
@@ -453,13 +455,17 @@
   renderFilters();
   renderProducts();
 
-  function openModal(src){
-  document.getElementById("imgModal").style.display="flex";
-  document.getElementById("modalImg").src = src;
+  // ===== Modal Functions =====
+function openModal(src){
+  const modal = document.getElementById("imgModal");
+  const modalImg = document.getElementById("modalImg");
+  modal.style.display = "flex";   // เปิด modal
+  modalImg.src = src;
 }
 function closeModal(){
-  document.getElementById("imgModal").style.display="none";
+  document.getElementById("imgModal").style.display = "none"; // ปิด modal
 }
+
 </script>
 
 </body>
