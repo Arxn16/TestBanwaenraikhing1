@@ -141,7 +141,7 @@
     /* Footer */
     footer{
       margin-top:36px; 
-      background:#000033; 
+      background:#004d40; 
       color:#e2e8f0}
     footer .container{
       display:grid; 
