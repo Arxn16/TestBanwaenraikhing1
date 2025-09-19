@@ -20,3 +20,6 @@ Route::get('admin/products/create', [ProductController::class, 'create'])->name(
 Route::post('admin/products', [ProductController::class, 'store'])->name('admin.products.store');
 
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
