@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AuthenticatedSessionController;
+
+
 
 Route::get('/', function () {
     return view('index');
@@ -23,3 +26,6 @@ Route::post('admin/products', [ProductController::class, 'store'])->name('admin.
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// routes/web.php
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
