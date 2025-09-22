@@ -17,7 +17,7 @@
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">
+                            <a class="nav-link active" href="/index">
                                 <i class="bi bi-house-door"></i> Dashboard
                             </a>
                         </li>
@@ -27,7 +27,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="/product">
                                 <i class="bi bi-cart"></i> รายการสินค้า
                             </a>
                         </li>

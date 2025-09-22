@@ -9,39 +9,6 @@
     .form-group {
         margin-bottom: 15px;
     }
-    .table-responsive {
-        overflow-x: auto;
-    }
-    .table th, .table td {
-        vertical-align: middle;
-        text-align: center;
-    }
-    .table th {
-        background-color: #f8f9fa;
-        color: #343a40;
-    }
-    .btn-sm {
-        font-size: 0.875rem;
-        padding: 0.25rem 0.5rem;
-    }
-    .btn-info {
-        background-color: #17a2b8;
-        border-color: #17a2b8;
-    }
-    .btn-danger {
-        background-color: #dc3545;
-        border-color: #dc3545;
-    }
-    .badge {
-        font-size: 0.75rem;
-        padding: 0.35rem 0.75rem;
-    }
-    .badge.bg-success {
-        background-color: #28a745;
-    }
-    .badge.bg-danger {
-        background-color: #dc3545;
-    }
 </style>
 @endpush
 
@@ -64,7 +31,7 @@
                     <form action="{{ route('product.upload') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="file" name="product_image" required>
-                        <button type="submit" class="btn btn-primary mt-3">อัพโหลด</button>
+                        <button type="submit">อัพโหลด</button>
                     </form>
                     <hr>
 
@@ -79,7 +46,7 @@
                     <!-- ตารางแสดงข้อมูลสินค้า -->
                     <div class="table-responsive mt-4">
                         <table class="table table-bordered table-striped table-hover">
-                            <thead>
+                            <thead class="thead-dark">
                                 <tr>
                                     <th>รูปภาพ</th>
                                     <th>รหัสสินค้า</th>
@@ -93,19 +60,19 @@
                             <tbody>
                                 @forelse($products as $product)
                                     <tr>
-                                        <td><img src="{{ asset('storage/' . $product->image_url) }}" alt="{{ $product->product_name }}" class="img-fluid rounded" width="100"></td>
-                                        <td>{{ $product->product_code }}</td>
-                                        <td>{{ $product->product_name }}</td>
-                                        <td>{{ number_format($product->price, 2) }} บาท</td>
-                                        <td>{{ $product->stock_quantity }}</td>
-                                        <td>
+                                        <td class="text-center"><img src="{{ asset('storage/' . $product->image_url) }}" alt="{{ $product->product_name }}" class="img-fluid rounded" width="100"></td>
+                                        <td class="text-center">{{ $product->product_code }}</td>
+                                        <td class="text-center">{{ $product->product_name }}</td>
+                                        <td class="text-center">{{ number_format($product->price, 2) }} บาท</td>
+                                        <td class="text-center">{{ $product->stock_quantity }}</td>
+                                        <td class="text-center">
                                             @if($product->listing)
                                                 <span class="badge bg-success">Listed</span>
                                             @else
                                                 <span class="badge bg-danger">Not Listed</span>
                                             @endif
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             <a href="#" class="btn btn-info btn-sm">แก้ไข</a>
                                             <a href="#" class="btn btn-danger btn-sm">ลบ</a>
                                         </td>
