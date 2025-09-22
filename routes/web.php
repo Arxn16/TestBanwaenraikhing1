@@ -14,8 +14,6 @@ Route::prefix('admin')->group(function() {
     // Route สำหรับหน้าแสดงสินค้าของแอดมิน
  
     // ใน routes/web.php หรือ routes/admin.php
-Route::get('admin/products/create', [ProductController::class, 'create'])->name('admin.products.create');
-Route::post('admin/products', [ProductController::class, 'store'])->name('admin.products.store');
 
 });
 Auth::routes();
