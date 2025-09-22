@@ -22,3 +22,4 @@ Route::get('/product', [App\Http\Controllers\ProductController::class, 'index'])
 // routes/web.php
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
+Route::get('/product', [ProductController::class, 'index'])->name('home');
