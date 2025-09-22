@@ -1,113 +1,23 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Banwaenraikhing</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f8f9fa;
-            margin: 0;
-        }
-        .sidebar {
-            background-color: #343a40; /* สีเทาเข้ม */
-            color: #fff;
-            min-height: 100vh;
-            width: 220px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            padding-top: 20px;
-            transition: all 0.3s ease;
-        }
-        .sidebar .nav-link {
-            color: #b8c6d3;
-            padding: 12px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-        .sidebar .nav-link:hover {
-            background-color: #495057;
-            color: #fff;
-        }
-        .sidebar .nav-link.active {
-            background-color: #007bff;
-            color: #fff;
-        }
-        .container-fluid {
-            display: flex;
-            margin-left: 220px; /* ให้เนื้อหาหลักไม่ทับกับ sidebar */
-        }
-        .main-content {
-            background-color: #ffffff;
-            flex: 1;
-            padding: 20px;
-        }
-        .footer {
-            background-color: #006400;
-            color: white;
-            padding: 10px;
-            text-align: center;
-        }
 
-        /* ทำให้ข้อความในตารางชิดซ้าย */
-        .table th, .table td {
-            text-align: left;  /* ตั้งค่าตัวหนังสือใน th และ td ให้อยู่ทางซ้าย */
-        }
-    </style>
-</head>
-<body>
+@extends('layouts.app')
 
-    <!-- Offcanvas Sidebar -->
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasSidebar" aria-labelledby="offcanvasSidebarLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasSidebarLabel">Banwaenraikhing</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">
-                        <i class="bi bi-house-door"></i> Dashboard
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/product">
-                        <i class="bi bi-box"></i> สต๊อกสินค้า
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="bi bi-cart"></i> การจัดการสินค้า
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="bi bi-pencil"></i> รายงาน
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
 
-    <!-- Button to trigger Offcanvas Sidebar -->
-    <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
-        Open Sidebar
-    </button>
+@push('styles')
+<style>
+    .img-fluid {
+        max-width: 100%;
+        height: auto;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+</style>
+@endpush
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <div class="container">
-            <h2>ยินดีต้อนรับสู่ Banwaenraikhing</h2>
-            <p>ที่นี่จะเป็นเนื้อหาหลักของเว็บไซต์ที่แสดงผลจากเมนูข้างๆ.</p>
-
-            <!-- รายการสินค้า -->
+@section('content')
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
             <div class="card shadow-lg">
                 <div class="card-header text-center">
                     <h4>{{ __('รายการสินค้า') }}</h4>
@@ -146,7 +56,7 @@
                                     <th>ราคา</th>
                                     <th>จำนวนสินค้า</th>
                                     <th>Listing</th>
-                                    <th>ดูรายละเอียดสินค้า</th>
+                                    <th>จัดการ</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -165,7 +75,8 @@
                                             @endif
                                         </td>
                                         <td class="text-center">
-                                            <a href="/product/{{ $product->id }}" class="btn btn-info btn-sm">ดูรายละเอียดสินค้า</a>
+                                            <a href="#" class="btn btn-info btn-sm">แก้ไข</a>
+                                            <a href="#" class="btn btn-danger btn-sm">ลบ</a>
                                         </td>
                                     </tr>
                                 @empty
@@ -188,13 +99,5 @@
             </div>
         </div>
     </div>
-
-    <div class="footer">
-        <p>&copy; 2025 Banwaenraikhing</p>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-</body>
-</html>
+</div>
+@endsection
