@@ -2,30 +2,12 @@
 
 @push('styles')
 <style>
-    /* Custom Styles */
-    .card {
-        border-radius: 10px;
-    }
-    .table {
-        margin-top: 20px;
-    }
-    .btn-sm {
-        font-size: 14px;
-    }
     .img-fluid {
         max-width: 100%;
         height: auto;
     }
-    .badge {
-        font-size: 12px;
-    }
-    @media (max-width: 768px) {
-        .card-header h4 {
-            font-size: 18px;
-        }
-        .table th, .table td {
-            font-size: 12px;
-        }
+    .form-group {
+        margin-bottom: 15px;
     }
 </style>
 @endpush
@@ -35,7 +17,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card shadow-lg">
-                <div class="card-header bg-primary text-white">
+                <div class="card-header text-center">
                     <h4>{{ __('รายการสินค้า') }}</h4>
                 </div>
                 <div class="card-body">
@@ -45,8 +27,24 @@
                         </div>
                     @endif
 
-                    <!-- ตรวจสอบการแสดงข้อมูลสินค้า -->
-                    <div class="table-responsive">
+                    <!-- ฟอร์มสำหรับการอัพโหลดรูปภาพ -->
+                    <form action="{{ route('product.upload') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="file" name="product_image" required>
+                        <button type="submit">อัพโหลด</button>
+                    </form>
+                    <hr>
+
+                    <!-- แสดงรูปภาพที่อัพโหลดแล้ว -->
+                    @if (isset($uploaded_image))
+                        <div class="text-center">
+                            <h5>รูปภาพที่อัพโหลดแล้ว:</h5>
+                            <img src="{{ asset('storage/' . $uploaded_image) }}" class="img-fluid rounded" alt="Uploaded Image">
+                        </div>
+                    @endif
+
+                    <!-- ตารางแสดงข้อมูลสินค้า -->
+                    <div class="table-responsive mt-4">
                         <table class="table table-bordered table-striped table-hover">
                             <thead class="thead-dark">
                                 <tr>
@@ -62,19 +60,19 @@
                             <tbody>
                                 @forelse($products as $product)
                                     <tr>
-                                        <td><img src="{{ $product->image_url }}" alt="{{ $product->product_name }}" class="img-fluid rounded" width="100"></td>
-                                        <td>{{ $product->product_code }}</td>
-                                        <td>{{ $product->product_name }}</td>
-                                        <td>{{ number_format($product->price, 2) }} บาท</td>
-                                        <td>{{ $product->stock_quantity }}</td>
-                                        <td>
+                                        <td class="text-center"><img src="{{ asset('storage/' . $product->image_url) }}" alt="{{ $product->product_name }}" class="img-fluid rounded" width="100"></td>
+                                        <td class="text-center">{{ $product->product_code }}</td>
+                                        <td class="text-center">{{ $product->product_name }}</td>
+                                        <td class="text-center">{{ number_format($product->price, 2) }} บาท</td>
+                                        <td class="text-center">{{ $product->stock_quantity }}</td>
+                                        <td class="text-center">
                                             @if($product->listing)
                                                 <span class="badge bg-success">Listed</span>
                                             @else
                                                 <span class="badge bg-danger">Not Listed</span>
                                             @endif
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             <a href="#" class="btn btn-info btn-sm">แก้ไข</a>
                                             <a href="#" class="btn btn-danger btn-sm">ลบ</a>
                                         </td>
@@ -91,7 +89,9 @@
                     <!-- ปุ่มออกจากระบบ -->
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" class="btn btn-danger mt-3">Logout</button>
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-danger">Logout</button>
+                        </div>
                     </form>
                 </div>
             </div>

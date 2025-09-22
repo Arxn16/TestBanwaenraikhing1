@@ -23,3 +23,7 @@ Route::get('/product', [App\Http\Controllers\ProductController::class, 'index'])
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 Route::get('/product', [ProductController::class, 'index'])->name('home');
+
+Route::post('/product/upload', [ProductController::class, 'upload'])->name('product.upload');
+
+

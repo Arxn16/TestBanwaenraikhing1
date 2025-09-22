@@ -1,2 +1,8 @@
-*
+# Ignore everything in the 'storage' directory
+/storage/*
+
+# Except the 'public' directory for uploaded files
+!/storage/app/public
+
+# Allow the .gitignore file itself
 !.gitignore
