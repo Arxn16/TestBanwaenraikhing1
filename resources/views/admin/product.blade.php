@@ -55,11 +55,6 @@
             padding: 10px;
             text-align: center;
         }
-
-        /* ทำให้ข้อความในตารางชิดซ้าย */
-        .table th, .table td {
-            text-align: left;  /* ตั้งค่าตัวหนังสือใน th และ td ให้อยู่ทางซ้าย */
-        }
     </style>
 </head>
 <body>
@@ -153,10 +148,10 @@
                                 @forelse($products as $product)
                                     <tr>
                                         <td class="text-center"><img src="{{ asset('storage/' . $product->image_url) }}" alt="{{ $product->product_name }}" class="img-fluid rounded" width="100"></td>
-                                        <td>{{ $product->product_code }}</td>  <!-- ตัวหนังสือชิดซ้าย -->
-                                        <td>{{ $product->product_name }}</td>  <!-- ตัวหนังสือชิดซ้าย -->
-                                        <td>{{ number_format($product->price, 2) }} บาท</td>  <!-- ตัวหนังสือชิดซ้าย -->
-                                        <td>{{ $product->stock_quantity }}</td>  <!-- ตัวหนังสือชิดซ้าย -->
+                                        <td class="text-center">{{ $product->product_code }}</td>
+                                        <td class="text-center">{{ $product->product_name }}</td>
+                                        <td class="text-center">{{ number_format($product->price, 2) }} บาท</td>
+                                        <td class="text-center">{{ $product->stock_quantity }}</td>
                                         <td class="text-center">
                                             @if($product->listing)
                                                 <span class="badge bg-success">Listed</span>
