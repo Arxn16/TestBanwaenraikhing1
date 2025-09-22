@@ -20,7 +20,7 @@ Route::post('admin/products', [ProductController::class, 'store'])->name('admin.
 });
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/product', [App\Http\Controllers\ProductController::class, 'index'])->name('product');
 // routes/web.php
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
