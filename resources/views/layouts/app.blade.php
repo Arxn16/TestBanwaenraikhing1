@@ -23,8 +23,8 @@
         <ul class="nav flex-column">
             <!-- แก้ไขลิงก์ Dashboard -->
             <li class="nav-item">
-                <a class="nav-link active" href="{{ route('dashboard') }}">
-                    <i class="bi bi-house-door"></i> Dashboard
+                <a class="nav-link active" href="{{ route('showproducts') }}">
+                    <i class="bi bi-house-door"></i> หน้าโชว์สินค้า
                 </a>
             </li>
             <li class="nav-item">
