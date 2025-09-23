@@ -14,36 +14,38 @@
     <!-- ตรวจสอบว่าเป็นหน้า Login หรือไม่ -->
     @unless(request()->routeIs('login'))
         <!-- Offcanvas Sidebar -->
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasSidebar" aria-labelledby="offcanvasSidebarLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasSidebarLabel">Banwaenraikhing</h5>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">
-                            <i class="bi bi-house-door"></i> Dashboard
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/product">
-                            <i class="bi bi-box"></i> สต๊อกสินค้า
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/product/manage">
-                            <i class="bi bi-cart"></i> การจัดการสินค้า
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="bi bi-pencil"></i> รายงาน
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasSidebar" aria-labelledby="offcanvasSidebarLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasSidebarLabel">Banwaenraikhing</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul class="nav flex-column">
+            <!-- แก้ไขลิงก์ Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link active" href="{{ route('dashboard') }}">
+                    <i class="bi bi-house-door"></i> Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/product">
+                    <i class="bi bi-box"></i> สต๊อกสินค้า
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/product/manage">
+                    <i class="bi bi-cart"></i> การจัดการสินค้า
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="bi bi-pencil"></i> รายงาน
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
 
         <!-- Button to trigger Offcanvas Sidebar -->
         <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
