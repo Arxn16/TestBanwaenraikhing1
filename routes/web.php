@@ -27,6 +27,8 @@ Route::get('/product', [ProductController::class, 'index'])->name('home');
 Route::post('/product/upload', [ProductController::class, 'upload'])->name('product.upload');
 
 
+
+
 Route::get('/showproducts', function () {
     return view('index');  // หน้า index.blade.php
 })->name('showproducts');
