@@ -26,6 +26,8 @@ Route::get('/product', [ProductController::class, 'index'])->name('home');
 
 Route::post('/product/upload', [ProductController::class, 'upload'])->name('product.upload');
 
+Route::put('product/{id}', [ProductController::class, 'update'])->name('product.update');
+
 
 
 

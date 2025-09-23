@@ -32,16 +32,7 @@
                     <i class="bi bi-box"></i> สต๊อกสินค้า
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/product/manage">
-                    <i class="bi bi-cart"></i> การจัดการสินค้า
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="bi bi-pencil"></i> รายงาน
-                </a>
-            </li>
+            
         </ul>
     </div>
 </div>
