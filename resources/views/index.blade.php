@@ -106,6 +106,33 @@
             font-size: 36px; font-weight: bold; color: #fff;
             cursor: pointer;
         }
+
+        .category-tabs {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .category-tab {
+        padding: 8px 16px;
+        background: #f1f5f9;
+        border-radius: 25px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .category-tab:hover {
+        background-color: #004d40;
+        color: white;
+    }
+
+    .category-tab.active {
+        background-color: #004d40;
+        color: white;
+    }
     </style>
 </head>
 <body>
@@ -131,50 +158,55 @@
         </div>
     </header>
 
-    <!-- Categories -->
-    <section class="section">
-        <div class="head">
-            <h2 style="margin:0">แว่นตาแนะนำ</h2>
-        </div>
+<!-- Categories -->
+<section class="section">
+    <div class="head">
+        <h2 style="margin:0">แว่นตาแนะนำ</h2>
+    </div>
 
-        <div class="grid" id="productGrid">
-    @foreach ($products as $product)
-    <article class="product card">
-        <div class="thumb">
-            <img src="{{ asset('storage/' . ($product->image ?? 'default-image.jpg')) }}" alt="{{ $product->name }}"/>
-            @if($product->off)
-                <span class="badge">{{ $product->off }}%</span>
-            @endif
-        </div>
-        <div class="body">
-            <div class="catname">{{ $product->category }}</div>
-            <div class="pname">{{ $product->product_name }}</div>
-            <div class="rating" aria-label="rating {{ $product->rating }} stars">
-                {!! str_repeat('★', $product->rating) !!}
-                {!! str_repeat('☆', 5 - $product->rating) !!}
+    <!-- หมวดหมู่ -->
+    <div class="category-tabs">
+        <button class="category-tab active" onclick="filterCategory('ทั้งหมด')">ทั้งหมด</button>
+        <button class="category-tab" onclick="filterCategory('แว่นสายตา')">แว่นสายตา</button>
+        <button class="category-tab" onclick="filterCategory('แว่นกันแดด')">แว่นกันแดด</button>
+        <button class="category-tab" onclick="filterCategory('เลนส์เสริม')">เลนส์เสริม</button>
+        <button class="category-tab" onclick="filterCategory('อุปกรณ์ดูแลเลนส์')">อุปกรณ์ดูแลเลนส์</button>
+    </div>
+
+    <div class="grid" id="productGrid">
+        @foreach ($products as $product)
+        <article class="product card" data-category="{{ $product->category }}">
+            <div class="thumb">
+                <img src="{{ asset('storage/' . ($product->image ?? 'default-image.jpg')) }}" alt="{{ $product->name }}"/>
+                @if($product->off)
+                    <span class="badge">{{ $product->off }}%</span>
+                @endif
             </div>
-            <div class="price">
-               <!-- <span class="old">฿{{ number_format($product->price, 2) }}</span>-->
-                <span class="new">฿{{ number_format($product->price, 2) }}</span>
+            <div class="body">
+                <div class="catname">{{ $product->category }}</div>
+                <div class="pname">{{ $product->product_name }}</div>
+                <div class="rating" aria-label="rating {{ $product->rating }} stars">
+                    {!! str_repeat('★', $product->rating) !!}
+                    {!! str_repeat('☆', 5 - $product->rating) !!}
+                </div>
+                <div class="price">
+                   <span class="new">฿{{ number_format($product->price, 2) }}</span>
+                </div>
             </div>
-        </div>
-        <div class="actions">
-            <button class="btn-sm">เพิ่มลงตะกร้า</button>
-            <button class="btn-sm" style="background:#0ea5e9">ดูสินค้า</button>
-        </div>
-    </article>
-@endforeach
+            <div class="actions">
+                <button class="btn-sm">เพิ่มลงตะกร้า</button>
+                <button class="btn-sm" style="background:#0ea5e9">ดูสินค้า</button>
+            </div>
+        </article>
+        @endforeach
+    </div>
 
-
-        </div>
-
-        <!-- Modal สำหรับแสดงรูป -->
-        <div id="imgModal" class="img-modal">
-            <span class="close" onclick="closeModal()">×</span>
-            <img class="modal-content" id="modalImg">
-        </div>
-    </section>
-
+    <!-- Modal สำหรับแสดงรูป -->
+    <div id="imgModal" class="img-modal">
+        <span class="close" onclick="closeModal()">×</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+</section>
     <!-- Footer -->
    <footer style="background-color: var(--brand); color: #fff; padding: 30px 0; border-top: 1px solid rgba(255, 255, 255, 0.3);">
     <div class="container" style="display: flex; justify-content: space-between; flex-wrap: wrap;">
@@ -235,7 +267,27 @@
         function closeModal(){
             document.getElementById("imgModal").style.display = "none"; 
         }
+        // ฟังก์ชันกรองสินค้าตามหมวดหมู่
+    function filterCategory(category) {
+        // หาสินค้าทั้งหมด
+        const allProducts = document.querySelectorAll('.product');
+        
+        // เปลี่ยนสถานะ active ของปุ่มหมวดหมู่
+        const categoryTabs = document.querySelectorAll('.category-tab');
+        categoryTabs.forEach(tab => tab.classList.remove('active'));
+        event.target.classList.add('active');
+        
+        // กรองสินค้าและแสดงสินค้าที่ตรงกับหมวดหมู่
+        allProducts.forEach(product => {
+            if (category === 'ทั้งหมด' || product.getAttribute('data-category') === category) {
+                product.style.display = 'block'; // แสดงสินค้า
+            } else {
+                product.style.display = 'none'; // ซ่อนสินค้า
+            }
+        });
+    }
     </script>
+
 
 </body>
 </html>
