@@ -25,7 +25,7 @@ class ProductController extends Controller
      */
    
    
-    public function index()
+    public function adminIndex()
     {
         // ดึงข้อมูลสินค้าทั้งหมดจากฐานข้อมูล
         $products = Product::all();  // ดึงข้อมูลสินค้าจากตาราง products

@@ -5,7 +5,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthenticatedSessionController;
 
 
-
+//หน้า index
 Route::get('/', function () {
     return view('index');
 });
@@ -18,11 +18,12 @@ Route::prefix('admin')->group(function() {
 });
 Auth::routes();
 
-Route::get('/product', [App\Http\Controllers\ProductController::class, 'index'])->name('home');
+
 // routes/web.php
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-Route::get('/product', [ProductController::class, 'index'])->name('home');
+//หน้า adminproducts
+Route::get('/product', [ProductController::class, 'adminIndex'])->name('product');
 
 Route::post('/product/upload', [ProductController::class, 'upload'])->name('product.upload');
 
