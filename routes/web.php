@@ -9,6 +9,11 @@ use App\Http\Controllers\AuthenticatedSessionController;
 Route::get('/', function () {
     return view('index');
 });
+// routes/web.php
+Route::get('/', [ProductController::class, 'index']);  // กำหนดให้ route นี้เรียกใช้ index function ของ ProductController
+
+
+
 
 Route::prefix('admin')->group(function() {
     // Route สำหรับหน้าแสดงสินค้าของแอดมิน

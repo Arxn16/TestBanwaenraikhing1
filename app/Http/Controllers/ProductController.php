@@ -8,22 +8,15 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-   
+// ProductController.php
+public function index()
+{
+    $products = Product::all(); // ดึงข้อมูลทั้งหมดจากฐานข้อมูล
+  
+    return view('index', compact('products'));
+}
+
    
     public function adminIndex()
     {
